@@ -6,34 +6,14 @@ import UserDataStep from './form_steps/UserDataStep.vue';
 import ContactDataStep from './form_steps/ContactDataStep.vue';
 import ExperienceDataStep from './form_steps/ExperienceDataStep.vue';
 import { ref } from 'vue';
+import { useMultistepForm } from './useMultistepForm';
 
-const userStep = ref(null);
-const contactStep = ref(null);
-const experienceStep = ref(null);
-
-const steps = ref([
-    {index: 0, step: userStep},
-    {index: 1, step: contactStep}, 
-    {index: 2, step: experienceStep}
-]);
-
-const shownStep = ref(0);
-
-function showStep(index) {
-    // steps.value.forEach((step) => {
-    //     const container = step.step.container;
-    //     container.classList.remove('active', 'previous')
-    //     if (step.index === index) {
-    //         container.classList.add('active');
-    //     }
-    //     else if (index === step.index - 1) {
-    //         container.classList.add('previous');
-    //     }
-    // })
-    if (index >= 0 && index < steps.value.length) {
-        shownStep.value = index;
-    }
-}
+const { steps, activeStepIndex, stepRefs, activateStep } =
+useMultistepForm([
+         { component: UserDataStep },
+         { component: ContactDataStep },
+         { component: ExperienceDataStep }
+    ]);
 
 function onSubmit(e) {
     const isValid = userStep.value?.validateStep();
@@ -42,6 +22,11 @@ function onSubmit(e) {
 
 const paginator = ref(null);
 
+function onPaginatorSelect(index) {
+    if (index < 0 || index > (steps.length - 1)) return false;
+
+    activateStep(index);
+}
 
 </script>
 
@@ -49,14 +34,29 @@ const paginator = ref(null);
 <div class="form-container bg-light p-3 rounded shadow">
     <form @submit.prevent="onSubmit">
         <div id="form-steps-container">
-            <UserDataStep ref="userStep" />
-            <ContactDataStep ref="contactStep"></ContactDataStep>
-            <ExperienceDataStep ref="experienceStep"></ExperienceDataStep>
+            <div
+            class="form-step"
+            v-for="(step, index) in steps"
+            :key="index"
+            :class="{
+                active: index === activeStepIndex,
+                previous: index < activeStepIndex,
+                next: index > activeStepIndex
+            }"
+            >
+                <component
+                    :is="step.component"
+                    :ref="el => stepRefs[index] = el"
+                />
+            </div>
         </div>
         <div class="bottom-row mt-3">
             <div class="row g-2 flex-column flex-md-row">
                 <div class="col">
-                    <FormStepPagination ref="paginator"/>
+                    <FormStepPagination ref="paginator" 
+                    :steps="steps" :active="activeStepIndex"
+                    @selected="(index) => {onPaginatorSelect(index)}" 
+                    />
                 </div>
                 <div class="col text-end">
                     <button type="submit" class="btn btn-primary">

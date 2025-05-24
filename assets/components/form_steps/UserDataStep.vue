@@ -6,13 +6,6 @@ import NameInput from '../form_inputs/namelike/NameInput.vue';
 import { useStepValidation } from './useStepValidation';
 import BirthdayInput from '../form_inputs/date/BirthdayInput.vue';
 
-// const props = defineProps({
-//     shownStep: {
-//         type: Number,
-//         required: true
-//     }
-// })
-
 const nameInput = ref(null);
 const surnameInput = ref(null);
 const birthdayInput = ref(null);
@@ -34,9 +27,7 @@ defineExpose({
 </script>
 
 <template>
-    <div class="form-step" ref="container">
-        <NameInput label="Imię" id="name" ref="nameInput"/>
-        <NameInput label="Nazwisko" id="surname" ref="surnameInput" />
-        <BirthdayInput label="Data urodzenia" id="birthday" ref="birthdayInput" />
-    </div>
+    <NameInput label="Imię" id="name" ref="nameInput"/>
+    <NameInput label="Nazwisko" id="surname" ref="surnameInput" />
+    <BirthdayInput label="Data urodzenia" id="birthday" ref="birthdayInput" />
 </template>
