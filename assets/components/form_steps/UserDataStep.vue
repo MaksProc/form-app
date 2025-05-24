@@ -25,7 +25,7 @@ defineExpose({
 </script>
 
 <template>
-    <NameInput label="Imię" id="name" ref="nameInput"/>
-    <NameInput label="Nazwisko" id="surname" ref="surnameInput" />
-    <BirthdayInput label="Data urodzenia" id="birthday" ref="birthdayInput" />
+    <NameInput label="Name" id="name" ref="nameInput"/>
+    <NameInput label="Surname" id="surname" ref="surnameInput" />
+    <BirthdayInput label="Birthday date" id="birthday" ref="birthdayInput" />
 </template>

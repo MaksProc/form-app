@@ -4,6 +4,7 @@
 import { ref, onMounted } from 'vue';
 import PhoneInput from '../form_inputs/contact/PhoneInput.vue';
 import { useStepValidation } from './useStepValidation';
+import EmailInput from '../form_inputs/contact/EmailInput.vue';
 
 const phoneInput = ref();
 
@@ -20,5 +21,6 @@ defineExpose({
 </script>
 
 <template>
-    <PhoneInput label="Numer telefonu" id="phone" ref="phoneInput" />
+    <PhoneInput label="Phone number" id="phone" ref="phoneInput" />
+    <EmailInput label="E-mail" id="email" ref="emailInput" />
 </template>
