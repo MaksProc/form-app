@@ -12,5 +12,15 @@ export function useMultistepForm(stepList) {
         }
     }
 
-    return { steps, activeStepIndex, stepRefs, activateStep }
+    function allValid() {
+        let allValid = true;
+        stepRefs.value.forEach(ref => {
+            if (!ref.validateStep()) {
+                allValid = false;
+            }
+        });
+        return allValid;
+    }
+
+    return { steps, activeStepIndex, stepRefs, activateStep, allValid }
 }

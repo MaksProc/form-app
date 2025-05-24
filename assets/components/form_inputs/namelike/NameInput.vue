@@ -19,7 +19,6 @@ const props = defineProps({
 
 const { value: name, validate } = useInputValidation(val => {
     // Make validity checks here
-
     if (!name.value) {
         return false
     }

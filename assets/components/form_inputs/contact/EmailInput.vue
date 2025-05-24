@@ -1,0 +1,1 @@
+<!-- Form component for email input -->

@@ -9,7 +9,6 @@ import BirthdayInput from '../form_inputs/date/BirthdayInput.vue';
 const nameInput = ref(null);
 const surnameInput = ref(null);
 const birthdayInput = ref(null);
-// const container = ref(null);
 
 const { registerInput, validateStep } = useStepValidation();
 
@@ -21,7 +20,6 @@ onMounted(() => {
 
 defineExpose({
     validateStep
-    // container
 })
 
 </script>

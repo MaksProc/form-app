@@ -8,7 +8,7 @@ import ExperienceDataStep from './form_steps/ExperienceDataStep.vue';
 import { ref } from 'vue';
 import { useMultistepForm } from './useMultistepForm';
 
-const { steps, activeStepIndex, stepRefs, activateStep } =
+const { steps, activeStepIndex, stepRefs, activateStep, allValid } =
 useMultistepForm([
          { component: UserDataStep },
          { component: ContactDataStep },
@@ -16,8 +16,8 @@ useMultistepForm([
     ]);
 
 function onSubmit(e) {
-    const isValid = userStep.value?.validateStep();
-    console.log('Valid: ', isValid);
+    
+    console.log('Valid: ', allValid());
 }
 
 const paginator = ref(null);
