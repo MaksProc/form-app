@@ -1,1 +1,42 @@
 <!-- First form step. Fields: name, surname, birthday -->
+
+<script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+import NameInput from '../form_inputs/namelike/NameInput.vue';
+import { useStepValidation } from './useStepValidation';
+import BirthdayInput from '../form_inputs/date/BirthdayInput.vue';
+
+// const props = defineProps({
+//     shownStep: {
+//         type: Number,
+//         required: true
+//     }
+// })
+
+const nameInput = ref(null);
+const surnameInput = ref(null);
+const birthdayInput = ref(null);
+// const container = ref(null);
+
+const { registerInput, validateStep } = useStepValidation();
+
+onMounted(() => {
+    registerInput(nameInput);
+    registerInput(surnameInput);
+    registerInput(birthdayInput);
+})
+
+defineExpose({
+    validateStep
+    // container
+})
+
+</script>
+
+<template>
+    <div class="form-step" ref="container">
+        <NameInput label="Imię" id="name" ref="nameInput"/>
+        <NameInput label="Nazwisko" id="surname" ref="surnameInput" />
+        <BirthdayInput label="Data urodzenia" id="birthday" ref="birthdayInput" />
+    </div>
+</template>

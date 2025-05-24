@@ -73,6 +73,8 @@ Encore
     //.autoProvidejQuery()
 
     .enableVueLoader()
+
+    .addEntry('form_page', './assets/styles/form.css')
 ;
 
 module.exports = Encore.getWebpackConfig();

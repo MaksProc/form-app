@@ -1,0 +1,38 @@
+.form-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.bottom-row {
+    flex-shrink: 0;
+}
+#form-steps-container {
+    position: relative;
+    overflow-y: hidden;
+}
+.form-step {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    transition: left 0.4s ease-in-out;
+    opacity: 0;
+}
+.form-step.active {
+    left: 0;
+    opacity: 1;
+    z-index: 1;
+}
+.form-step.previous {
+    left: -100%;
+    opacity: 0;
+}

@@ -3,6 +3,7 @@
 {% block title %}Hello FormController!{% endblock %}
 
 {% block stylesheets %}
+{{ encore_entry_link_tags('form_page') }}
 {% endblock %}
 
 {% block javascripts %}
@@ -10,11 +11,7 @@
 
 {% block body %}
 
-<div class="container">
-    <div id="form-base">
-        <div id="vue-app">
-            <form-base></form-base>
-        </div>
-    </div>
+<div class="form-wrapper container-lg" id="vue-app">
+    <form-base />
 </div>
 {% endblock %}
