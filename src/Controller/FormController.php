@@ -41,9 +41,9 @@ final class FormController extends AbstractController
         foreach ($data['experience'] as $entry) {
             if (
                 empty($entry['company']) ||
-                empty($entry['title']) ||
-                empty($entry['dateRange']['start']) ||
-                empty($entry['dateRange']['end'])
+                empty($entry['jobtitle']) ||
+                empty($entry['start']) ||
+                empty($entry['end'])
             ) {
                 return $this->json(['error' => 'Invalid experience entry'], 400);
             }
