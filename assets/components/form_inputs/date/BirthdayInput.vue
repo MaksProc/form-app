@@ -30,7 +30,11 @@ const { value:date, validate } = useInputValidation(val => {
     return true;
 });
 
-defineExpose({ validate })
+function getData() {
+    return date.value;
+}
+
+defineExpose({ validate, getData })
 
 </script>
 <template>

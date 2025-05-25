@@ -35,7 +35,11 @@ const {value: phone, validate } = useInputValidation(val => {
     return true;
 })
 
-defineExpose({ validate });
+function getData() {
+    return phone.value;
+}
+
+defineExpose({ validate, getData });
 
 // User experience
 function onInput(e) {
@@ -49,7 +53,7 @@ function onInput(e) {
     if (isPlus) digits = digits.slice(0, 11)
     else digits = digits.slice(0, 12);
 
-    // 3. Insert spaces every 3 digits for readability
+    // 3. Insert spaces every 3 symbols for readability
     const groups = [];
     if (isPlus) {
         groups.push("+" + digits.slice(0, 2))

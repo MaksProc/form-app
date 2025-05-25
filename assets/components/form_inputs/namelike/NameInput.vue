@@ -30,7 +30,11 @@ const { value: name, validate } = useInputValidation(val => {
     return true
 })
 
-defineExpose({ validate });
+function getData() {
+    return name.value;
+}
+
+defineExpose({ validate, getData });
 
 
 // User experience

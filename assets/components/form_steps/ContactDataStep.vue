@@ -23,8 +23,16 @@ onMounted(() => {
     registerInput(emailInput);
 })
 
+function getData() {
+    return {
+        phone: phoneInput.value.getData(),
+        email: emailInput.value.getData()
+    };
+}
+
 defineExpose({
-    validateStep
+    validateStep,
+    getData
 })
 
 </script>

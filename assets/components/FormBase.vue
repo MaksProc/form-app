@@ -16,8 +16,19 @@ useMultistepForm([
     ]);
 
 function onSubmit(e) {
+    const formValid = allValid();
+    console.log('Valid: ', formValid);
     
-    console.log('Valid: ', allValid());
+    if (!formValid) return;
+    
+    const payload = {
+        user: stepRefs.value[0].getData(),
+        contact: stepRefs.value[1].getData(),
+        experience: stepRefs.value[2].getData()
+    }
+
+    console.log(payload);
+    
 }
 
 const paginator = ref(null);
@@ -30,6 +41,7 @@ function onPaginatorSelect(index) {
 
 </script>
 
+<!-- "required" depends on active index to avoid validation pop-ups on inactive steps. Validation scripts still prevent form submission -->
 <template>
 <div class="form-container bg-light p-3 rounded shadow">
     <form @submit.prevent="onSubmit">

@@ -25,8 +25,17 @@ onMounted(() => {
     registerInput(birthdayInput);
 })
 
+function getData() {
+    return {
+        name: nameInput.value.getData(),
+        surname: surnameInput.value.getData(),
+        birthday: birthdayInput.value.getData()
+    };
+}
+
 defineExpose({
-    validateStep
+    validateStep,
+    getData
 })
 
 </script>

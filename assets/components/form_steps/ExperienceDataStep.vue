@@ -14,8 +14,6 @@ const props = defineProps({
     }
 })
 
-const experienceInput = ref(null);
-
 let idCounter = 0;
 const experiences = reactive([]);
 const experienceRefs = [];
@@ -23,8 +21,13 @@ const experienceRefs = [];
 onMounted(() => {
 })
 
+function getData() {
+    return experienceRefs.map(row => row.getData());
+}
+
 defineExpose({
-    validateStep
+    validateStep,
+    getData
 })
 
 function addExperience() {

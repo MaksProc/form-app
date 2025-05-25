@@ -48,12 +48,19 @@ function validateDateRange({ start, end }) {
     return true;
 }
 
-const { validate, isValid } = useInputValidation(
+const { value:range, validate, isValid } = useInputValidation(
     validateDateRange,
     dateRange  
 );
 
-defineExpose({ validate });
+function getData() {
+    return {
+        start: range.value.start,
+        end: range.value.end
+    };
+}
+
+defineExpose({ validate, getData });
 
 const emit = defineEmits(['helpMsg']);
 watch(helpMsg, (newMsg) => {

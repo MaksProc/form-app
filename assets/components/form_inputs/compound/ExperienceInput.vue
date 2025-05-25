@@ -26,7 +26,7 @@ const daterangeInput = ref(null);
 const companyName = ref('');
 const titleName = ref('');
 
-const { value: yourvmodel, validate } = useInputValidation(val => {
+const { value, validate } = useInputValidation(val => {
     // Make validity checks here
     if (!daterangeInput.value.validate()) {
         return false;
@@ -41,8 +41,19 @@ const { value: yourvmodel, validate } = useInputValidation(val => {
     return true;
 })
 
+function getData() {
+    const range = daterangeInput.value.getData();
+    return {
+        company: companyName.value,
+        jobtitle: titleName.value,
+        start: range.start,
+        end: range.end
+    };
+}
+
 defineExpose({ 
-    validate
+    validate,
+    getData
 });
 
 

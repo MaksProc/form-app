@@ -11,7 +11,6 @@ export function useStepValidation() {
     }
 
     function validateStep() {
-        console.log(inputs.value)
         return inputs.value.every(input => input.value.validate());
     }
 
