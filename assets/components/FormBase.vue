@@ -38,7 +38,7 @@ async function submitForm() {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(payload);
+            body: JSON.stringify(payload)
         });
 
         const result = await response.json();
