@@ -7,7 +7,6 @@ import ContactDataStep from './form_steps/ContactDataStep.vue';
 import ExperienceDataStep from './form_steps/ExperienceDataStep.vue';
 import { ref, reactive } from 'vue';
 import { useMultistepForm } from './useMultistepForm';
-import JsonSummary from './JsonSummary.vue';
 
 const { steps, activeStepIndex, stepRefs, activateStep, allValid } =
 useMultistepForm([
@@ -78,7 +77,7 @@ function onPaginatorSelect(index) {
 
 <!-- "required" depends on active index to avoid validation pop-ups on inactive steps. Validation scripts still prevent blank form submission -->
 <template>
-<div class="form-container bg-light p-3 rounded shadow">
+<div class="form-container bg-light p-3 rounded shadow container-lg">
     <form @submit.prevent="onSubmit" v-if="!successful">
         <div id="form-steps-container">
             <div
