@@ -20,15 +20,42 @@ function onSubmit(e) {
     console.log('Valid: ', formValid);
     
     if (!formValid) return;
-    
+
+    console.log(payload);
+}
+
+async function submitForm() {
     const payload = {
         user: stepRefs.value[0].getData(),
         contact: stepRefs.value[1].getData(),
         experience: stepRefs.value[2].getData()
-    }
+    };
 
-    console.log(payload);
-    
+    try {
+        const response = await fetch('/submit-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload);
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Error');
+        }
+
+        // Show submitted data
+        // ...
+        console.log("Submission successful");
+    }
+    catch (error) {
+        // Show submission error
+        // ...
+        console.log("Error on submission: ", error.message);
+    }
 }
 
 const paginator = ref(null);
