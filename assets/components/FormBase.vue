@@ -21,7 +21,7 @@ function onSubmit(e) {
     
     if (!formValid) return;
 
-    console.log(payload);
+    submitForm();
 }
 
 async function submitForm() {
@@ -56,6 +56,8 @@ async function submitForm() {
         // ...
         console.log("Error on submission: ", error.message);
     }
+
+    console.log(payload);
 }
 
 const paginator = ref(null);

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ExperienceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
 class Experience
@@ -15,16 +16,29 @@ class Experience
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $company_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $job_title = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTime $start_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTime $end_date = null;
+
+    #[Assert\Expression(
+        "this.getEndDate() >= this.getStartDate()",
+        message:"End date must be after start date"
+    )]
+    public function isValidDateRange(): bool
+    {
+        return true;
+    }
 
     #[ORM\ManyToOne(inversedBy: 'experience')]
     #[ORM\JoinColumn(nullable: false)]
