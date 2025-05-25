@@ -16,6 +16,12 @@ class Contact
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Length(
+        min:12,
+        max:15,
+        minMessage:'Phone number must be 9-12 symbols long',
+        maxMessage:'Phone number must be 9-12 symbols long'
+        )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]

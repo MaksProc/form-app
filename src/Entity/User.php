@@ -19,7 +19,7 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message:'Name must not be blank')]
     #[Assert\Length(max:254)]
     private ?string $name = null;
 
