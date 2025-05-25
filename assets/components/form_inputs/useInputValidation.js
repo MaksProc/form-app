@@ -5,9 +5,10 @@ import { ref } from 'vue';
 
 export function useInputValidation(
     validator = val => true, // The function that checks value. Default is all valid
-    initial = ''
+    initial = '',
+    externalRef = null
 ) {
-    const value = ref(initial);
+    const value = externalRef ?? ref(initial);
     const isValid = ref(true);
 
     function validate() {

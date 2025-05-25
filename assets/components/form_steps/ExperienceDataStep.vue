@@ -3,11 +3,14 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useStepValidation } from './useStepValidation';
+import ExperienceInput from '../form_inputs/compound/ExperienceInput.vue';
 
 const { registerInput, validateStep } = useStepValidation();
 
-onMounted(() => {
+const experienceInput = ref(null);
 
+onMounted(() => {
+   registerInput(experienceInput);
 })
 
 defineExpose({
@@ -17,5 +20,5 @@ defineExpose({
 </script>
 
 <template>
-
+    <ExperienceInput id="1" ref="experienceInput" />
 </template>

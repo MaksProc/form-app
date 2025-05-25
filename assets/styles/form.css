@@ -18,14 +18,17 @@
 #form-steps-container {
     position: relative;
     overflow-y: hidden;
+    overflow-x: hidden;
+    height: 70vh;
+    min-height: 480px;
 }
 .form-step {
-    width: 100%;
+    position: absolute;
     top: 0;
     left: 100%;
+    width: 100%;
     transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out;
     opacity: 0;
-    position: relative;
 }
 .form-step.active {
     left: 0;
