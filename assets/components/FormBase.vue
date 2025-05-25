@@ -5,8 +5,9 @@ import FormStepPagination from './FormStepPagination';
 import UserDataStep from './form_steps/UserDataStep.vue';
 import ContactDataStep from './form_steps/ContactDataStep.vue';
 import ExperienceDataStep from './form_steps/ExperienceDataStep.vue';
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { useMultistepForm } from './useMultistepForm';
+import JsonSummary from './JsonSummary.vue';
 
 const { steps, activeStepIndex, stepRefs, activateStep, allValid } =
 useMultistepForm([
@@ -23,6 +24,9 @@ function onSubmit(e) {
 
     submitForm();
 }
+
+const successful = ref(false);
+const submittedData = reactive({});
 
 async function submitForm() {
     const payload = {
@@ -49,6 +53,8 @@ async function submitForm() {
 
         // Show submitted data
         // ...
+        successful.value = true;
+        Object.assign(submittedData, payload);
         console.log("Submission successful");
     }
     catch (error) {
@@ -70,10 +76,10 @@ function onPaginatorSelect(index) {
 
 </script>
 
-<!-- "required" depends on active index to avoid validation pop-ups on inactive steps. Validation scripts still prevent form submission -->
+<!-- "required" depends on active index to avoid validation pop-ups on inactive steps. Validation scripts still prevent blank form submission -->
 <template>
 <div class="form-container bg-light p-3 rounded shadow">
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" v-if="!successful">
         <div id="form-steps-container">
             <div
             class="form-step"
@@ -108,5 +114,26 @@ function onPaginatorSelect(index) {
             </div>
         </div>
     </form>
+    <div v-else>
+        <h1>Data successfully submitted</h1>
+        <h2>User info:</h2>
+        <p>Name: {{ submittedData.user.name }}</p>
+        <p>Surname: {{ submittedData.user.surname }}</p>
+        <p>Birthday: {{ submittedData.user.birthday }}</p>
+
+        <h2>Contact info:</h2>
+        <p>Phone number: {{ submittedData.contact.phone }}</p>
+        <p>Email: {{ submittedData.contact.email }}</p>
+
+        <h2>Work experience:</h2>
+        <ul>
+            <li v-for="(exp, index) in submittedData.experience" :key="index">
+                <strong>{{ exp.company }}</strong> - {{ exp.jobtitle }}
+                <br />
+                From {{ exp.start }} to {{ exp.end }}
+            </li>
+        </ul>
+
+    </div>
 </div>
 </template>
