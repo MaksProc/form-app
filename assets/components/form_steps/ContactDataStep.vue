@@ -6,6 +6,13 @@ import PhoneInput from '../form_inputs/contact/PhoneInput.vue';
 import { useStepValidation } from './useStepValidation';
 import EmailInput from '../form_inputs/contact/EmailInput.vue';
 
+const props = defineProps({
+    required: {
+        type: Boolean,
+        default: false
+    }
+})
+
 const phoneInput = ref();
 const emailInput = ref();
 
@@ -23,6 +30,6 @@ defineExpose({
 </script>
 
 <template>
-    <PhoneInput label="Phone number" id="phone" ref="phoneInput" />
-    <EmailInput label="E-mail" id="email" ref="emailInput" />
+    <PhoneInput label="Phone number" id="phone" ref="phoneInput" :required="required" />
+    <EmailInput label="E-mail" id="email" ref="emailInput" :required="required" />
 </template>

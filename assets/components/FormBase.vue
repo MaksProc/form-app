@@ -47,6 +47,7 @@ function onPaginatorSelect(index) {
                 <component
                     :is="step.component"
                     :ref="el => stepRefs[index] = el"
+                    :required="index === activeStepIndex"
                 />
             </div>
         </div>

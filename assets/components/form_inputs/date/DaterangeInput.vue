@@ -13,6 +13,10 @@ const props = defineProps({
     id: {
         type: String,
         required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -71,7 +75,7 @@ function onInput(e) {
             v-model="dateStart" 
             @input="onInput" 
             class="form-control"
-            required
+            :required="required"
         />
     </td>
     <td>
@@ -81,7 +85,7 @@ function onInput(e) {
             v-model="dateEnd" 
             @input="onInput" 
             class="form-control" 
-            required
+            :required="required"
         />
     </td>
 </template>

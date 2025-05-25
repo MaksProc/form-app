@@ -38,7 +38,7 @@
     z-index: 1;
 }
 .form-step:not(.active) {
-    
+    /* display: none; */
 }
 .form-step.previous {
     left: -100%;

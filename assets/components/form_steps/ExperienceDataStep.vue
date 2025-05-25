@@ -7,6 +7,13 @@ import ExperienceInput from '../form_inputs/compound/ExperienceInput.vue';
 
 const { registerInput, validateStep } = useStepValidation();
 
+const props = defineProps({
+    required: {
+        type: Boolean,
+        default: false
+    }
+})
+
 const experienceInput = ref(null);
 
 let idCounter = 0;
@@ -58,6 +65,7 @@ addExperience();
                 :key="exp.id" 
                 :id="String(index)" 
                 :ref="el => experienceRefs[index] = el"
+                :required="required"
             />
         </tbody>
         <tfoot>

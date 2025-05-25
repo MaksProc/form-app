@@ -14,6 +14,10 @@ const props = defineProps({
     id: {
         type: String,
         required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -70,7 +74,7 @@ function onTitleInput(e) {
             v-model="companyName" 
             @input="onCompanyInput" 
             class="form-control"
-            required
+            :required="required"
             />
         </td>
         <td>
@@ -80,10 +84,10 @@ function onTitleInput(e) {
             v-model="titleName" 
             @input="onTitleInput" 
             class="form-control"
-            required
+            :required="required"
             />
         </td>
-        <DaterangeInput id="{{ id }}-experience" ref="daterangeInput" @helpMsg="(msg) => helpMsg = msg"/>
+        <DaterangeInput id="{{ id }}-experience" ref="daterangeInput" @helpMsg="(msg) => helpMsg = msg" :required="required"/>
     </tr>
     <tr v-if="helpMsg">
         <td colspan="4">

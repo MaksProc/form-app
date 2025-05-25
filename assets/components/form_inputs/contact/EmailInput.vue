@@ -13,6 +13,10 @@ const props = defineProps({
     id: {
         type: String,
         required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -49,7 +53,7 @@ function onInput(e) {
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}: </label>
-        <input type="email" :id="id" v-model="email" @input="onInput" class="form-control" autocomplete="email" required/>
+        <input type="email" :id="id" v-model="email" @input="onInput" class="form-control" autocomplete="email" :required="required"/>
         <small class="form-text text-danger">{{ helpMsg }}</small>
     </div>
 </template>

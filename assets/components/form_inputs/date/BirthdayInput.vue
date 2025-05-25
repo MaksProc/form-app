@@ -12,6 +12,10 @@ const props = defineProps({
     id: {
         type: String,
         required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -32,6 +36,6 @@ defineExpose({ validate })
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <input type='date' :id="id" v-model="date" class="form-control" required/>
+        <input type='date' :id="id" v-model="date" class="form-control" :required="required"/>
     </div>
 </template>

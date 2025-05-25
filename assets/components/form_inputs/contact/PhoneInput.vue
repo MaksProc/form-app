@@ -12,6 +12,10 @@ const props = defineProps({
     id: {
         type: String,
         required: true
+    },
+    required: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -75,7 +79,7 @@ function onInput(e) {
             @input="onInput" 
             class="form-control" 
             inputmode="tel" autocomplete="tel" placeholder="+48 ___ ___ ___" 
-            required
+            :required="required"
         >
         <small class="form-text text-danger">{{ helpMsg }}</small>
     </div>
