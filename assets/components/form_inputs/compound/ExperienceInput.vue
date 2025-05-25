@@ -19,18 +19,27 @@ const props = defineProps({
 
 const helpMsg = ref('');
 const daterangeInput = ref(null);
+const companyName = ref('');
+const titleName = ref('');
 
 const { value: yourvmodel, validate } = useInputValidation(val => {
     // Make validity checks here
     if (!daterangeInput.value.validate()) {
-        console.log("daterange validity checked and failed")
         return false;
     }
-
+    
+    if (companyName.value === '' || titleName.value === '') {
+        helpMsg.value="Provide both company name and your job title";
+        return false;
+    }
+    
+    helpMsg.value = ''
     return true;
 })
 
-defineExpose({ validate });
+defineExpose({ 
+    validate
+});
 
 
 // User experience, input limitations
@@ -53,10 +62,32 @@ function onTitleInput(e) {
 </script>
 
 <template>
-    <div class="form-group">
-        <input type="text" id="{{id}}-company" v-model="companyName" @input="onCompanyInput" class="form-control"/>
-        <input type="text" id="{{id}}-title" v-model="titleName" @input="onTitleInput" class="form-control"/>
-        <DaterangeInput id="{{ id }}-experience" ref="daterangeInput"/>
-        <small class="form-text text-danger">{{ helpMsg }}</small>
-    </div>
+    <tr class="form-group">
+        <td>
+            <input 
+            type="text"
+            id="{{id}}-company" 
+            v-model="companyName" 
+            @input="onCompanyInput" 
+            class="form-control"
+            required
+            />
+        </td>
+        <td>
+            <input 
+            type="text" 
+            id="{{id}}-title" 
+            v-model="titleName" 
+            @input="onTitleInput" 
+            class="form-control"
+            required
+            />
+        </td>
+        <DaterangeInput id="{{ id }}-experience" ref="daterangeInput" @helpMsg="(msg) => helpMsg = msg"/>
+    </tr>
+    <tr v-if="helpMsg">
+        <td colspan="4">
+            <small class="form-text text-danger">{{ helpMsg }}</small>
+        </td>
+    </tr>
 </template>

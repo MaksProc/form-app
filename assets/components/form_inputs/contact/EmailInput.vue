@@ -49,7 +49,7 @@ function onInput(e) {
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}: </label>
-        <input type="email" :id="id" v-model="email" @input="onInput" class="form-control" autocomplete="email"/>
+        <input type="email" :id="id" v-model="email" @input="onInput" class="form-control" autocomplete="email" required/>
         <small class="form-text text-danger">{{ helpMsg }}</small>
     </div>
 </template>

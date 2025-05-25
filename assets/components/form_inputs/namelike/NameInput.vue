@@ -44,6 +44,6 @@ function onInput(e) {
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}: </label>
-        <input type="text" :id="id" v-model="name" @input="onInput" class="form-control"/>
+        <input type="text" :id="id" v-model="name" @input="onInput" class="form-control" required/>
     </div>
 </template>

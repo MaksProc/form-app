@@ -7,11 +7,13 @@ import { useStepValidation } from './useStepValidation';
 import EmailInput from '../form_inputs/contact/EmailInput.vue';
 
 const phoneInput = ref();
+const emailInput = ref();
 
 const { registerInput, validateStep } = useStepValidation();
 
 onMounted(() => {
     registerInput(phoneInput);
+    registerInput(emailInput);
 })
 
 defineExpose({

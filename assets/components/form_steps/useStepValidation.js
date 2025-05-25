@@ -1,15 +1,17 @@
 // Import this in form Step components
 
-import { ref } from 'vue';
+import { ref, isRef } from 'vue';
 
 export function useStepValidation() {
     const inputs = ref([]);
 
     function registerInput(input) {
-        inputs.value.push(input);
+        const wrapped = isRef(input) ? input : ref(input);
+        inputs.value.push(wrapped);
     }
 
     function validateStep() {
+        console.log(inputs.value)
         return inputs.value.every(input => input.value.validate());
     }
 

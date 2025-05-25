@@ -32,6 +32,6 @@ defineExpose({ validate })
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <input type='date' :id="id" v-model="date" class="form-control" />
+        <input type='date' :id="id" v-model="date" class="form-control" required/>
     </div>
 </template>

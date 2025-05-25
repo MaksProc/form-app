@@ -69,7 +69,14 @@ function onInput(e) {
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <input type="text" :id="id" v-model="phone" @input="onInput" class="form-control" inputmode="tel" autocomplete="tel" placeholder="+48 ___ ___ ___">
+        <input 
+            type="text" :id="id" 
+            v-model="phone" 
+            @input="onInput" 
+            class="form-control" 
+            inputmode="tel" autocomplete="tel" placeholder="+48 ___ ___ ___" 
+            required
+        >
         <small class="form-text text-danger">{{ helpMsg }}</small>
     </div>
 </template>

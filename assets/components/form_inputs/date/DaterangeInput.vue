@@ -1,7 +1,7 @@
 <!-- Input for two dates where one must be later than the other -->
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useInputValidation } from '../useInputValidation';
 
 
@@ -51,6 +51,10 @@ const { validate, isValid } = useInputValidation(
 
 defineExpose({ validate });
 
+const emit = defineEmits(['helpMsg']);
+watch(helpMsg, (newMsg) => {
+    emit('helpMsg', String(newMsg));
+})
 
 // User experience, input limitations
 function onInput(e) {
@@ -60,10 +64,24 @@ function onInput(e) {
 </script>
 
 <template>
-    <div class="form-group row">
-        <input type="date" id="{{ id }}-start" v-model="dateStart" @input="onInput" class="form-control"/>
-        <input type="date" id="{{ id }}-end" v-model="dateEnd" @input="onInput" class="form-control" />
-
-        <small class="form-text text-danger">{{ helpMsg }}</small>
-    </div>
+    <td>
+        <input 
+            type="date" 
+            id="{{ id }}-start" 
+            v-model="dateStart" 
+            @input="onInput" 
+            class="form-control"
+            required
+        />
+    </td>
+    <td>
+        <input 
+            type="date" 
+            id="{{ id }}-end" 
+            v-model="dateEnd" 
+            @input="onInput" 
+            class="form-control" 
+            required
+        />
+    </td>
 </template>

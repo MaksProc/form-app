@@ -29,6 +29,8 @@
     width: 100%;
     transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out;
     opacity: 0;
+    max-height: 100%;
+    overflow-y: auto;
 }
 .form-step.active {
     left: 0;
